@@ -1,20 +1,27 @@
-web:
-  build: .
-  volumes:
-    - .:/var/www:cached
-  links:
-    - "database"
-  ports:
-    - "8080:80"
+version: '3'
+services:
+  web:
+    build: .
+    volumes:
+      - .:/var/www:cached
+    ports:
+      - "8080:80"
+    networks:
+      - webnet
 
-database:
-  image: mysql
-  ports:
-    - "3306:3306"
-  environment:
-    MYSQL_DATABASE: talent
-    MYSQL_ROOT_PASSWORD: talent
-    MYSQL_USER: talent
-    MYSQL_PASSWORD: talent
-  volumes:
-    - /var/lib/mysql
+  database:
+    image: mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: talent
+      MYSQL_ROOT_PASSWORD: talent
+      MYSQL_USER: talent
+      MYSQL_PASSWORD: talent
+    volumes:
+      - /var/lib/mysql
+    networks:
+      - webnet
+
+networks:
+  webnet:
