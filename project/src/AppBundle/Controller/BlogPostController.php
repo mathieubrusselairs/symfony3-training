@@ -73,20 +73,20 @@ class BlogPostController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $deleteForm = $this->createDeleteForm($blogPost);
-        $text = new Comment();
-        $texts = $em->getRepository('AppBundle:Text')->findAll();
+        $comment = new Comment();
+        $comments = $em->getRepository('AppBundle:Comment')->findAll();
 
-            $text->setBlogpost($blogPost); 
-            $textForm = $this->createFormBuilder($text)
-             ->add('text', TextareaType::class)
+            $comment->setBlogpost($blogPost); 
+            $commentForm = $this->createFormBuilder($comment)
+             ->add('comment', TextareaType::class)
              ->add('save', SubmitType::class, array('label' =>'Submit comment'))
              ->getForm();
         return $this->render('blogpost/show.html.twig', array(
             'blogPost' => $blogPost,
             
             'delete_form' => $deleteForm->createView(),
-            'text_form' =>$textForm->createView(),
-            'texts' => $texts,
+            'comment_form' =>$commentForm->createView(),
+            'comments' => $comments,
 
 
 

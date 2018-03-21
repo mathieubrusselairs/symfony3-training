@@ -48,7 +48,7 @@ class BlogPost
      * @ORM\Column(name="text", type="text")
      * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="BlogPost")
      */
-    private $text;
+    private $comment;
 
     /**
      * Get id

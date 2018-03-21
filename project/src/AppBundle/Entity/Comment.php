@@ -49,9 +49,9 @@ class Comment
      *
      * @return Comment
      */
-    public function setText($text)
+    public function setBody($text)
     {
-        $this->text = $text;
+        $this->text = $body;
 
         return $this;
     }
