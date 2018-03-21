@@ -46,6 +46,8 @@ body { background: #F5F5F5; font: 18px/1.5 sans-serif; }
             width: 100%;
             height: 50px;
             background-color: black;
+            border-bottom: 3px solid darkgray;
+            transition: all .5s ease;
 
         }
         nav ul {
@@ -67,6 +69,10 @@ body { background: #F5F5F5; font: 18px/1.5 sans-serif; }
             color: white;
             transition: all .3s ease;
         }
+
+        nav:hover{
+            border-bottom: 25px solid darkgray;
+        }
         nav ul li a:hover {
 
             color: grey;
@@ -77,20 +83,29 @@ body { background: #F5F5F5; font: 18px/1.5 sans-serif; }
             list-style: none;
         }
 
+        label {
+            display: block;
+        }
+
+        form {
+            width: 10%;
+            margin: 0 auto;
+        }
+
 
 
 
         @keyframes colorchanger {
             0% {
-                color: grey;
+                color: white;
                 letter-spacing: 0px;
             }
             50% {
-                color: white;
+                color: grey;
                 letter-spacing: 3px;
             }
             100% {
-                color: grey;
+                color: white;
                 letter-spacing: 0px;
             }
         }

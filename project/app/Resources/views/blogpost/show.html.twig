@@ -24,6 +24,16 @@
         </tbody>
     </table>
 
+{# TODO: Adding comment section #}
+    <h2>Comments</h2>
+     {{ form_start(text_form) }}
+        <input type="text" value="text">
+    {{ form_end(text_form) }} 
+
+    {% for text in texts %}
+        {{text.text}}
+    {% endfor %}
+
     <ul>
         <li>
             <a href="{{ path('blogpost') }}">Back to the list</a>

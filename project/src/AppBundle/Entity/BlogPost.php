@@ -42,6 +42,13 @@ class BlogPost
      */
     private $publicationdate;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="text", type="text")
+     * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="BlogPost")
+     */
+    private $text;
 
     /**
      * Get id
@@ -102,6 +109,16 @@ class BlogPost
     }
 
     /**
+     * Get comments
+     *
+     * @return string
+     */
+    public function getComments()
+    {
+        return $this->comment;
+    }
+
+    /**
      * Set publicationdate
      *
      * @param \DateTime $publicationdate
@@ -124,5 +141,10 @@ class BlogPost
     {
         return $this->publicationdate;
     }
+
+
+
+
+
 }
 

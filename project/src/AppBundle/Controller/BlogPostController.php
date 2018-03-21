@@ -3,9 +3,14 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\BlogPost;
+use AppBundle\Entity\Comment;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Blogpost controller.
@@ -39,7 +44,7 @@ class BlogPostController extends Controller
      */
     public function newAction(Request $request)
     {
-        $blogPost = new Blogpost();
+        $blogpost = new Blogpost();
         $form = $this->createForm('AppBundle\Form\BlogPostType', $blogPost);
         $form->handleRequest($request);
 
@@ -61,15 +66,32 @@ class BlogPostController extends Controller
      * Finds and displays a blogPost entity.
      *
      * @Route("/blogpost/{id}", name="blogpost_show")
-     * @Method("GET")
+     * @Method({"GET", "POST"})
      */
     public function showAction(BlogPost $blogPost)
     {
-        $deleteForm = $this->createDeleteForm($blogPost);
+        $em = $this->getDoctrine()->getManager();
 
+        $deleteForm = $this->createDeleteForm($blogPost);
+        $text = new Comment();
+        $texts = $em->getRepository('AppBundle:Text')->findAll();
+
+            $text->setBlogpost($blogPost); 
+            $textForm = $this->createFormBuilder($text)
+             ->add('text', TextareaType::class)
+             ->add('save', SubmitType::class, array('label' =>'Submit comment'))
+             ->getForm();
         return $this->render('blogpost/show.html.twig', array(
             'blogPost' => $blogPost,
+            
             'delete_form' => $deleteForm->createView(),
+            'text_form' =>$textForm->createView(),
+            'texts' => $texts,
+
+
+
+            
+            
         ));
     }
 
