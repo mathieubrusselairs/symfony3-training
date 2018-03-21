@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link rel="stylesheet" href="/css/style.css" />
+    </head>
+
+    <body>
+    <nav>
+        <ul>
+            <li> <a href='/'>Home</a></li>
+            <li> <a href={{ path('biografie', {'naam':'mathieu'}) }}>Biografie</a></li>      
+            <li> <a href={{ path('something') }}>Something</a></li>        
+            <li> <a href={{ path('blogpost') }}>Blog</a></li>        
+        </ul>
+    </nav>
+        {% block body %}{% endblock %}
+
+
+        {% block javascripts %}{% endblock %}
+    </body>
+
+
+</html>
+
+
